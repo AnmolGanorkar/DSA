@@ -10,6 +10,20 @@
  */
 class Solution {
 public:
+    // it will return head of the reverse list
+    ListNode* reverse1(ListNode* head){
+
+        //base case
+        if (head == NULL || head -> next == NULL){
+            return head;
+        }
+        ListNode* smallerHead =  reverse1(head->next);
+        head -> next -> next = head;
+        head->next=NULL;
+
+        return smallerHead;
+
+    }
 
     void reverse(ListNode* &head , ListNode* curr , ListNode* prev){
 
@@ -24,12 +38,17 @@ public:
     }
 
     ListNode* reverseList(ListNode* head) {
+        //recursive appoarch -2
+        return reverse1(head);
 
+
+        /*
+        //recursive appoarch -1
         ListNode *prev = NULL;
         ListNode *curr = head;
         reverse(head , curr , prev);
         return head;
-
+        */
         /*
 
         //interative method
