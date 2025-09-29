@@ -10,8 +10,29 @@
  */
 class Solution {
 public:
+
+    void reverse(ListNode* &head , ListNode* curr , ListNode* prev){
+
+        if(curr==NULL){
+            head =  prev;
+            return;
+        }
+
+        ListNode* forward = curr -> next;
+        reverse(head ,  forward, curr);
+        curr -> next = prev;
+    }
+
     ListNode* reverseList(ListNode* head) {
 
+        ListNode *prev = NULL;
+        ListNode *curr = head;
+        reverse(head , curr , prev);
+        return head;
+
+        /*
+
+        //interative method
         if (head == NULL || head->next == NULL){
             return head;
         }
@@ -26,5 +47,6 @@ public:
             curr = forward;
         }
         return prev;
+        */
     }
 };
